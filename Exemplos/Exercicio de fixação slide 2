@@ -1,0 +1,63 @@
+/*• Declare 2 variáveis inteiras e dois
+ponteiros para inteiros que devem ser
+associados ao endereço das variáveis.
+Usando somente os ponteiros faça com
+que as variáveis recebam o dobro e o
+triplo de seu valor respectivamente,*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/*int main () {
+ int n1 = 2 ,n2 = 3;
+ int *p1 , *p2;
+ p1 = &n1;
+ p2 = &n2;
+ 
+ int num1 = *p1 * 2;
+ int num2 = *p2 * 3;
+ 
+ printf("O dobro de %d é %d e o triplo de  %d é  %d", n1 ,num1 ,n2 ,num2);
+
+    return 0;
+}*/
+
+/*• 1)Guarde N números em um vetor alocado dinamicamente. Exiba a
+média dos números lidos e os múltiplos de 6 digitados.*/
+
+void main () {
+int multi6,*vetor,N,i;
+int cont , cont2;
+float media;
+
+printf ("Digite um valor de N: ");
+scanf ("%d", &N);
+
+vetor = (int*) malloc (N * sizeof(int));
+
+// Verifica se a alocação foi bem-sucedida
+if (vetor == NULL) {
+  printf("Erro ao alocar memória.\n");
+}
+// Lê os números no vetor
+printf("Digite os %d números:\n", N);
+for (i = 0; i < N; i++)
+scanf("%d", &vetor[i]);
+cont2 += vetor[i];
+
+media = cont2/N;
+
+printf("A média dos números é: %.2f\n", media);
+
+    // Verificando os múltiplos de 6
+    printf("Múltiplos de 6 digitados:\n");
+    for (i = 0; i < N; i++) {
+        if (vetor[i] % 6 == 0) {
+            printf("%d ", vetor[i]);
+            cont++;
+        }
+    }
+
+    // Liberando a memória alocada
+    free(vetor);
+}
