@@ -64,25 +64,42 @@ typedef struct aluno{
 
 //b) Função para Remover um Aluno por Nome
 
-int removerAluno(aluno *inicio, char *nome){
-    aluno *atual = *inicio;
-
-    if (atual == NULL && atual -> ant == NULL){
+int removeAluno(aluno **inicio, char *nome) {
+    // Verifica se a lista está vazia
+    if (*inicio == NULL) {
+        printf("Lista vazia\n");
         return 0;
     }
-    while (atual != NULL && strcmp(atual->nome,nome)!=0){
+
+    aluno *atual = *inicio;
+    
+    // Procura o aluno com o nome especificado
+    while (atual != NULL && strcmp(atual->nome, nome) != 0) {
         atual = atual->prox;
     }
-    if (atual -> nome == NULL){
-        printf ("Aluno Não Encontrado")                  
+    
+    // Se o aluno não foi encontrado
+    if (atual == NULL) {
+        printf("Aluno não encontrado\n");
         return 0;
-    }else {
-        atual -> ant -> prox = atual -> prox;
-        atual -> prox -> ant = atual -> ant;
     }
-    free (atual);
+    
+    // Ajusta o ponteiro do nó anterior, se existir
+    if (atual->ant != NULL) {
+        atual->ant->prox = atual->prox;
+    } else {
+        // Se estiver removendo o primeiro nó, atualiza o início da lista
+        *inicio = atual->prox;
+    }
+    
+    // Ajusta o ponteiro do nó seguinte, se existir
+    if (atual->prox != NULL) {
+        atual->prox->ant = atual->ant;
+    }
+    
+    free(atual);
+    return 1;
 }
-
 //4) Pilha com Lista Circular Simplesmente Encadeada
 //a) Função para Empilhar (Push)
 
