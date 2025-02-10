@@ -1,4 +1,4 @@
-include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 /*Listas lineares são estruturas de dados que armazenam elementos em uma sequência. Podem ser implementadas como arrays (vetores) ou listas encadeadas. As operações básicas incluem inserção, remoção e busca.
 

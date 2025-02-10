@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 /*Complexidade de Algoritmos 
         
 A complexidade de algoritmos mede o desempenho de um algoritmo em termos de tempo (complexidade temporal) e espaço (complexidade espacial). É comum usar a notação Big-O para descrever o pior caso de um algoritmo.

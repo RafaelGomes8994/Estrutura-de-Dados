@@ -1,5 +1,5 @@
-include <stdio.h>
-include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 /*Revisão de Ponteiros e Alocação Dinâmica de Memória
         
 Ponteiros são variáveis que armazenam endereços de memória. Eles são fundamentais para manipular estruturas de dados dinâmicos, como listas encadeadas e árvores. A alocação dinâmica de memória permite que você reserve espaço em tempo de execução, usando funções como malloc, calloc, realloc e free.
