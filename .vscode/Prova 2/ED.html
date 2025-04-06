@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html> 
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#estruturas-de-dados-em-c">Estruturas de dados em C#</a>
+<ul>
+<li><a href="#introdução">Introdução</a></li>
+<li><a href="#principais-estruturas">Principais Estruturas</a></li>
+<li><a href="#list--t-">List < T ></a></li>
+<li><a href="#linkedlist--t-">LinkedList < T ></a></li>
+<li><a href="#dictionary--tkey-tvalue-">Dictionary < TKey, TValue ></a></li>
+<li><a href="#hashset--t-">Hashset < T ></a></li>
+<li><a href="#queue--t-">Queue < T ></a></li>
+<li><a href="#stack--t-">Stack < T ></a></li>
+<li><a href="#utilizações">Utilizações</a></li>
+<li><a href="#complexidade">Complexidade</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="estruturas-de-dados-em-c">Estruturas de dados em C#</h1>
+<h2 id="introdução">Introdução</h2>
+<p><strong>Objetivo</strong>: Explicar e demonstrar as estruturas de dados disponíveis em C#.</p>
+<p><strong>Por qual motivo as estruturas de dados são importantes?</strong></p>
+<p>São importantes, por permitirem organizar, armazenar, manipular e acessar dados eficientemente. De modo que, elas são fundamentais para o desenvolvimento de software e para a resolução de problemas computacionais.</p>
+<p><strong>Coleções:</strong></p>
+<p>As coleções em C# são classes que organizam, armazenam e manipulam grupos de objetos. Elas são estruturas de dados que permitem executar operações como armazenar, atualizar, excluir, recuperar, pesquisar e classificar objetos.</p>
+<ul>
+<li>
+<p>Genérica:</p>
+</li>
+<li>
+<p>São a melhor solução para tipagem forte</p>
+</li>
+<li>
+<p>Permitem criar componentes que podem trabalhar com qualquer tipo de dados</p>
+</li>
+<li>
+<p>São usadas com mais frequência com coleções e com os métodos que operam nelas</p>
+</li>
+<li>
+<p>Não genérica:</p>
+</li>
+<li>
+<p>São menos eficazes do que os seus homólogos genéricos</p>
+</li>
+<li>
+<p>São mantidas apenas para fins de compatibilidade</p>
+</li>
+<li>
+<p>São úteis em cenários que exigem armazenamento de dados heterogêneos</p>
+</li>
+</ul>
+<p>Em C#, as coleções genéricas são preferidas às não genéricas por serem mais seguras e performáticas. De maneira que, as coleções não genéricas são mantidas apenas para compatibilidade. Por fim, nos exemplos posteriores serão tratadas somente as coleções genéricas.</p>
+<h2 id="principais-estruturas">Principais Estruturas</h2>
+<h2 id="list--t-">List < T ></h2>
+<h3 id="o-que-é"><strong>O que é?</strong></h3>
+<p></strong> A <code>List<T></code> em C# é uma estrutura de dados dinâmica e genérica do namespace <code>System.Collections.Generic</code>. Ela armazena elementos de um tipo específico (T), funcionando como um array que cresce ou encolhe automaticamente. Isso elimina a necessidade de gerenciar memória manualmente, ao contrário de C, onde se usa <code>malloc</code>, <code>realloc</code> e <code>free</code>.</p>
+
+<h3 id="características">Características</h3>
+<ul>
+  <li><strong>Tipagem Forte:</strong> Só aceita elementos do tipo T, evitando erros de tipo.</li>
+  <li><strong>Memória Automática:</strong> Ajusta sua capacidade (geralmente dobrando-a) e o coletor de lixo libera memória.</li>
+  <li><strong>Métodos Úteis:</strong> Inclui <code>Add</code>, <code>Remove</code>, <code>Sort</code>, <code>Find</code>, etc.</li>
+  <li><strong>Acesso Rápido:</strong> Índices permitem acesso em O(1).</li>
+</ul>
+
+<h3 id="comparação-com-c">Comparação com C</h3>
+<p>Em C, arrays dinâmicos exigem gerenciamento manual com <code>malloc</code> e <code>realloc</code>. A tabela abaixo compara <code>List<T></code> em C# com arrays dinâmicos em C:</p>
+<img src="C:\Users\rafae\OneDrive\Área de Trabalho\VsCode\Estrutura de Dados\.vscode\Prova 2\imagem ed.jpg" alt="Comparação entre List<T> em C# e Array Dinâmico em C" />
+
+<h3 id="vantagens-e-uso">Vantagens e Uso</h3>
+<ul>
+  <li><strong>C#:</strong> Mais fácil, seguro e produtivo. Ideal para aplicações gerais.</li>
+  <li><strong>C:</strong> Mais eficiente em sistemas de baixo nível, como embarcado.</li>
+</ul>
+
+<p><strong>Exemplo 1.</strong></p>
+<p>Analogia: Prateleira em um quarto de criança, onde:</p>
+<ol>
+<li>Todos os brinquedos ficam um ao lado do outro, em ordem sequencial.</li>
+<li>A prateleira expande automaticamente quando novos brinquedos são adicionados.</li>
+<li>Caso queira pegar um brinquedo no meio, precisa deslocar os brinquedos ao redor p/ manter a ordem.</li>
+</ol>
+<h3 id="funcionamento">Funcionamento</h3>
+<h4 id="adicionando-no-final">1. <strong>Adicionando no final:</strong></h4>
+<ul>
+<li>Se a criança colocar um novo brinquedo no final da prateleira, não tem problema, apenas será inserido.</li>
+</ul>
+<p>[🦄][🚗][🎮] ➔ add [🎲] ➔ [🦄][🚗][🎮][🎲]</p>
+<h4 id="adicionar-no-meio">2. <strong>Adicionar no meio:</strong></h4>
+<ul>
+<li>Se a criança quiser colocar um brinquedo no meio da sequência, ela precisa empurrar os brinquedos à direita para abrir espaço.</li>
+</ul>
+<p>[🦄][🚗][🎮] ➔ add [🤖] na posição 2 ➔ [🦄][🤖][🚗][🎮]</p>
+<h4 id="remover-um-brinquedo">3. <strong>Remover um Brinquedo</strong></h4>
+<ul>
+<li>Se a criança tirar um brinquedo do meio, os brinquedos à direita precisam se deslocar para a esquerda para preencher o espaço vazio.</li>
+</ul>
+<p>[🦄][🤖][🚗][🎮] ➔ remove 🤖 ➔ [🦄][🚗][🎮]</p>
+<ul>
+<li>Os brinquedos ocupam posições fixas e contíguas (como um array).</li>
+<li>Adicionar ou remover no meio exige a reorganização física dos elementos (deslocando os brinquedos).</li>
+</ul>
+<p><strong>Vantagem:</strong> Acesso rápido a qualquer elemento pelo número da posição</p>
+<p><strong>Desvantagem:</strong> Inserções/remoções no meio são mais lentas (por causa do empurra-empurra)</p>
+<p><strong>Exemplo 2.</strong></p>
+<p>Abaixo, um exemplo prático em C# demonstrando o uso da <code>List<T></code> com strings:</p>
+<pre class="language-csharp"><code class="prism language-csharp">
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Criação da lista
+        List<string> nomes = new List<string>();
+
+        // Adição de elementos
+        nomes.Add("Alice");
+        nomes.Add("Bob");
+        nomes.Add("Charlie");
+
+        // Acesso a elementos
+        Console.WriteLine("Primeiro nome: " + nomes[0]); // Alice
+        Console.WriteLine("Segundo nome: " + nomes[1]);  // Bob
+
+        // Remoção de elementos
+        nomes.Remove("Bob");  // Remove pelo valor
+        nomes.RemoveAt(0);    // Remove pelo índice (remove Alice)
+
+        // **Iteração sobre a lista
+        Console.WriteLine("Nomes restantes:");
+        foreach (string nome in nomes)
+        {
+            Console.WriteLine(nome); // Exibe os nomes restantes
+        }
+
+        // Métodos úteis
+        // Verifica se a lista contém um elemento específico
+        bool contemCharlie = nomes.Contains("Charlie");
+        Console.WriteLine("A lista contém Charlie? " + contemCharlie);
+
+        // Encontra o índice de um elemento
+        int indiceDeCharlie = nomes.IndexOf("Charlie");
+        Console.WriteLine("Índice de Charlie: " + indiceDeCharlie);
+
+        // Ordena a lista
+        nomes.Sort();
+        Console.WriteLine("Lista ordenada:");
+        foreach (string nome in nomes)
+        {
+            Console.WriteLine(nome);
+        }
+    }
+}
+</code></pre>
+
+<p>Para fins de comparação, abaixo está a implementação correspondente em C, simulando uma lista dinâmica de strings:</p>
+<pre class="language-c"><code class="prism language-c">
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Estrutura para representar a lista dinâmica
+typedef struct {
+    char** data;      // Array de ponteiros para strings
+    size_t size;      // Tamanho atual da lista
+    size_t capacity;  // Capacidade total alocada
+} StringList;
+
+// Função para criar e inicializar a lista
+StringList* createList() {
+    StringList* list = malloc(sizeof(StringList));
+    list->capacity = 10;  // Capacidade inicial
+    list->size = 0;
+    list->data = malloc(list->capacity * sizeof(char*));
+    return list;
+}
+
+// Função para adicionar um elemento à lista
+void addElement(StringList* list, const char* value) {
+    if (list->size == list->capacity) {
+        list->capacity *= 2;  // Dobra a capacidade se necessário
+        list->data = realloc(list->data, list->capacity * sizeof(char*));
+    }
+    list->data[list->size] = strdup(value);  // Aloca e copia a string
+    list->size++;
+}
+
+// Função para remover um elemento pelo valor
+void removeByValue(StringList* list, const char* value) {
+    for (size_t i = 0; i < list->size; i++) {
+        if (strcmp(list->data[i], value) == 0) {
+            free(list->data[i]);  // Libera a memória da string removida
+            for (size_t j = i; j < list->size - 1; j++) {
+                list->data[j] = list->data[j + 1];  // Desloca os elementos
+            }
+            list->size--;
+            return;
+        }
+    }
+}
+
+// Função para remover um elemento pelo índice
+void removeByIndex(StringList* list, size_t index) {
+    if (index < list->size) {
+        free(list->data[index]);  // Libera a memória da string removida
+        for (size_t i = index; i < list->size - 1; i++) {
+            list->data[i] = list->data[i + 1];  // Desloca os elementos
+        }
+        list->size--;
+    }
+}
+
+// Função para verificar se a lista contém um valor
+int contains(StringList* list, const char* value) {
+    for (size_t i = 0; i < list->size; i++) {
+        if (strcmp(list->data[i], value) == 0) {
+            return 1;  // Verdadeiro
+        }
+    }
+    return 0;  // Falso
+}
+
+// Função para encontrar o índice de um valor
+int indexOf(StringList* list, const char* value) {
+    for (size_t i = 0; i < list->size; i++) {
+        if (strcmp(list->data[i], value) == 0) {
+            return (int)i;  // Retorna o índice
+        }
+    }
+    return -1;  // Não encontrado
+}
+
+// Função de comparação para ordenação
+int compareStrings(const void* a, const void* b) {
+    return strcmp(*(const char**)a, *(const char**)b);
+}
+
+// Função para ordenar a lista
+void sortList(StringList* list) {
+    qsort(list->data, list->size, sizeof(char*), compareStrings);
+}
+
+// Função para liberar a memória da lista
+void freeList(StringList* list) {
+    for (size_t i = 0; i < list->size; i++) {
+        free(list->data[i]);  // Libera cada string
+    }
+    free(list->data);  // Libera o array de ponteiros
+    free(list);        // Libera a estrutura
+}
+
+int main() {
+    // **Criação da lista**
+    StringList* nomes = createList();
+
+    // **Adição de elementos**
+    addElement(nomes, "Alice");
+    addElement(nomes, "Bob");
+    addElement(nomes, "Charlie");
+
+    // **Acesso a elementos**
+    printf("Primeiro nome: %s\n", nomes->data[0]);  // Alice
+    printf("Segundo nome: %s\n", nomes->data[1]);   // Bob
+
+    // **Remoção de elementos**
+    removeByValue(nomes, "Bob");  // Remove pelo valor
+    removeByIndex(nomes, 0);      // Remove pelo índice (remove Alice)
+
+    // **Iteração sobre a lista**
+    printf("Nomes restantes:\n");
+    for (size_t i = 0; i < nomes->size; i++) {
+        printf("%s\n", nomes->data[i]);  // Exibe os nomes restantes
+    }
+
+    // **Métodos úteis**
+    // Verifica se a lista contém um elemento específico
+    int contemCharlie = contains(nomes, "Charlie");
+    printf("A lista contém Charlie? %s\n", contemCharlie ? "Sim" : "Não");
+
+    // Encontra o índice de um elemento
+    int indiceDeCharlie = indexOf(nomes, "Charlie");
+    printf("Índice de Charlie: %d\n", indiceDeCharlie);
+
+    // Ordena a lista
+    sortList(nomes);
+    printf("Lista ordenada:\n");
+    for (size_t i = 0; i < nomes->size; i++) {
+        printf("%s\n", nomes->data[i]);
+    }
+
+    // Libera a memória
+    freeList(nomes);
+    return 0;
+}
+</code></pre>
+<h2 id="linkedlist--t-">LinkedList < T ></h2>
+<h3 id="o-que-é-1">O que é?</h3>
+<p>É uma estrutura de dados que armazena elementos em uma sequência linear, usando referências entre os elementos. A classe LinkedList&lt; T &gt; é uma implementação básica de uma lista duplamente ligada em C#.</p>
+<p><strong>Exemplo 1.</strong></p>
+<p>Analogia: Trem com vagões</p>
+<p><strong>Locomotiva (head):</strong> Primeiro vagão. Ela aponta para o próximo vagão.</p>
+<p><strong>Vagão (nó):</strong></p>
+<ul>
+<li>
+<p><strong>Carga:</strong> Dado (ex: “Maçãs”).</p>
+</li>
+<li>
+<p><strong>Gancho (ponteiro):</strong> Liga ao próximo vagão.</p>
+</li>
+<li>
+<p><strong>Último vagão:</strong> Gancho vazio (<code>null</code>).</p>
+</li>
+</ul>
+<h4 id="operações">Operações</h4>
+<ul>
+<li>
+<p><strong>Inserir no início:</strong></p>
+</li>
+<li>
+<p>Novo vagão vira o primeiro.</p>
+</li>
+<li>
+<p>Exemplo: Locomotiva → [Novo] → [Antigo Primeiro].</p>
+</li>
+<li>
+<p><strong>Inserir no meio:</strong></p>
+</li>
+<li>
+<p>Quebre o gancho entre dois vagões.</p>
+</li>
+<li>
+<p>Conecte o novo vagão no meio.</p>
+</li>
+<li>
+<p><strong>Remover:</strong></p>
+</li>
+<li>
+<p>Ajuste o gancho do vagão anterior para “pular” o removido.</p>
+</li>
+</ul>
+<h4 id="navegação">Navegação</h4>
+<p>Comece na locomotiva e siga os ganchos até o fim (como percorrer o trem vagão por vagão).</p>
+<h4 id="vantagens">Vantagens</h4>
+<ul>
+<li>
+<p>É simples de implementar.</p>
+</li>
+<li>
+<p>É boa para adicionar e remover elementos no início, meio ou fim da lista.</p>
+</li>
+<li>
+<p>É adequada para quando o número de elementos é desconhecido.</p>
+</li>
+<li>
+<p>É a base para estruturas mais avançadas, como árvores e gráficos.</p>
+</li>
+<li>
+<p>É eficiente para algoritmos de classificação em alguns casos.</p>
+</li>
+</ul>
+<h4 id="desvantagens">Desvantagens</h4>
+<ul>
+<li>
+<p>Não permite acesso aleatório a elementos.</p>
+</li>
+<li>
+<p>Consome mais memória do que matrizes.</p>
+</li>
+<li>
+<p>É ineficiente para pesquisar grandes quantidades de dados.</p>
+</li>
+<li>
+<p>Pode ser lenta para executar programas que acessam frequentemente dados de listas vinculadas.</p>
+</li>
+<li>
+<p>Travessia em ordem reversa não é possível.</p>
+</li>
+</ul>
+<pre class=" language-csharp"><code class="prism  language-csharp">
+<span class="token keyword">public</span>  <span class="token keyword">class</span>  <span class="token class-name">Pessoa</span>
+
+<span class="token punctuation">{</span>
+
+<span class="token keyword">public</span>  <span class="token keyword">string</span> nome <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">public</span>  <span class="token keyword">int</span> idade <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">public</span>  <span class="token keyword">int</span> matricula <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h2 id="dictionary--tkey-tvalue-"><strong>Dictionary &lt; TKey, TValue &gt;</strong></h2>
+<h3 id="o-que-é-2">O que é?</h3>
+<p><strong>Exemplo 1.</strong></p>
+<p>Analogia: Um livro de feitiços</p>
+<p>Imagine um livro de feitiços onde:</p>
+<ul>
+<li>
+<p>Cada feitiço tem um nome único (como “Lumus” ou “Wingardium Leviosa”).</p>
+</li>
+<li>
+<p>Cada nome de feitiço está associado a uma descrição (como “Acende a ponta da varinha” ou “Faz objetos ou pessoas levitarem”).</p>
+</li>
+</ul>
+<p>Isso é exatamente como um dictionary funciona:</p>
+<ul>
+<li>
+<p>Chave (Key): Nome do feitiço (ex: “Reparo”).</p>
+</li>
+<li>
+<p>Valor (Value): Descrição do feitiço (ex: “Repara objetos”).</p>
+</li>
+</ul>
+<p><strong>Características principais</strong></p>
+<ul>
+<li>
+<p>Chaves Únicas: Assim como não há dois feitiços com o mesmo nome no livro, em um dicionário, as chaves são únicas.</p>
+</li>
+<li>
+<p>Acesso Rápido: Assim como você procura um feitiço pelo nome, um dicionário permite acessar valores instantaneamente pela chave (em tempo constante, O(1)).</p>
+</li>
+<li>
+<p>Flexibilidade: Valores podem ser de qualquer tipo (strings, números, listas, até outros dicionários!), mas as chaves geralmente são imutáveis (como strings ou números).</p>
+</li>
+</ul>
+<p><strong>Operações Comuns</strong></p>
+<ul>
+<li>Adicionar/Modificar:</li>
+</ul>
+<pre class=" language-csharp"><code class="prism  language-csharp">
+livroDeFeiticos<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token string">"Petrificus Totalus"</span><span class="token punctuation">,</span> <span class="token string">"Paralisa a pessoa atingida"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<ul>
+<li>Remover:</li>
+</ul>
+<pre class=" language-csharp"><code class="prism  language-csharp">
+livroDeFeiticos<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span><span class="token string">"Avada Kedavra"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// retorna true se a chave existir</span>
+
+</code></pre>
+<ul>
+<li>Verificar existência:</li>
+</ul>
+<pre class=" language-csharp"><code class="prism  language-csharp">
+<span class="token keyword">if</span> <span class="token punctuation">(</span>livroDeFeiticos<span class="token punctuation">.</span><span class="token function">ContainsKey</span><span class="token punctuation">(</span><span class="token string">"Crucio"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">{</span>
+
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Existe"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span> <span class="token keyword">else</span> Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Não existe"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<ul>
+<li>Listar chaves/valores:</li>
+</ul>
+<pre class=" language-csharp"><code class="prism  language-csharp">
+<span class="token keyword">foreach</span> <span class="token punctuation">(</span>KeyValuePair<span class="token operator">&lt;</span><span class="token keyword">string</span><span class="token punctuation">,</span> <span class="token keyword">string</span><span class="token operator">&gt;</span> feitico <span class="token keyword">in</span> livroDeFeiticos<span class="token punctuation">)</span>
+
+<span class="token punctuation">{</span>
+
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">"Feitiço: {feitico.Key}, Descrição: {feitico.Value}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h4 id="vantagens-1">Vantagens</h4>
+<ul>
+<li>
+<p>É dinâmico, ou seja, o seu tamanho aumenta conforme a necessidade.</p>
+</li>
+<li>
+<p>É um tipo genérico, o que significa que pode ser usado com qualquer tipo de dado.</p>
+</li>
+<li>
+<p>Possui pesquisas rápidas de valores com base em chaves.</p>
+</li>
+<li>
+<p>Armazena chaves exclusivamente.</p>
+</li>
+<li>
+<p>Lança uma exceção se tentarmos encontrar uma chave que não existe.</p>
+</li>
+<li>
+<p>É baseado em uma tabela de hash, o que significa que usa uma pesquisa de hash, que é um algoritmo eficiente para procurar coisas.</p>
+</li>
+</ul>
+<h4 id="desvantagens-1">Desvantagens</h4>
+<ul>
+<li>
+<p>Uma vez congelado, nenhuma modificação pode ser feita.</p>
+</li>
+<li>
+<p>Só é útil em cenários em que não são necessárias alterações frequentes após a criação do dicionário.</p>
+</li>
+</ul>
+<p><strong>Exemplo 2.</strong></p>
+<p>A ideia é realizar um mapeamento de um objeto para um JSON dinâmico, baseado em um dicionário de mapeamento de propriedades (com chave e valor de tipo string). De forma que, é um cenário realista e comum em aplicações que dependem de um mapeamento mais dinâmico. Logo, os dados do dicionário poderiam, por exemplo, estarem armazenados em uma tabela de banco de dados, e serem mapeados para um dicionário em memória para então serem utilizados.</p>
+<pre class=" language-csharp"><code class="prism  language-csharp">
+<span class="token keyword">using</span>  System<span class="token punctuation">;</span>
+
+<span class="token keyword">using</span>  System<span class="token punctuation">.</span>Collections<span class="token punctuation">.</span>Generic<span class="token punctuation">;</span>
+
+<span class="token keyword">using</span>  System<span class="token punctuation">.</span>Text<span class="token punctuation">.</span>Json<span class="token punctuation">;</span>
+
+  
+
+<span class="token keyword">namespace</span>  ArtigoDictionary
+
+<span class="token punctuation">{</span>
+
+<span class="token keyword">class</span>  <span class="token class-name">Program</span>
+
+<span class="token punctuation">{</span>
+
+<span class="token keyword">static</span>  <span class="token keyword">void</span>  <span class="token function">Main</span><span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+
+<span class="token punctuation">{</span>
+
+<span class="token comment">// dictionary que contém o mapeamento entre as propriedades da classe para um JSON de integração com outro sistema</span>
+
+<span class="token keyword">var</span> mappingsPopulated <span class="token operator">=</span>  <span class="token keyword">new</span>  <span class="token class-name">Dictionary</span><span class="token operator">&lt;</span><span class="token keyword">string</span><span class="token punctuation">,</span> <span class="token keyword">string</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">{</span> <span class="token string">"Model"</span><span class="token punctuation">,</span> <span class="token string">"model"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+<span class="token punctuation">{</span> <span class="token string">"Year"</span><span class="token punctuation">,</span> <span class="token string">"year"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+<span class="token punctuation">{</span> <span class="token string">"Price"</span><span class="token punctuation">,</span> <span class="token string">"price"</span> <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  
+
+<span class="token comment">// car é o objeto que quero mapear para um JSON de integração</span>
+
+<span class="token keyword">var</span> car <span class="token operator">=</span>  <span class="token keyword">new</span>  <span class="token class-name">Car</span><span class="token punctuation">(</span><span class="token string">"Fiat Uno"</span><span class="token punctuation">,</span> <span class="token number">2025</span><span class="token punctuation">,</span> <span class="token number">1000000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  
+
+<span class="token comment">// obtendo o Type para posteriormente utilizar Reflection e atribuir o valor no meu dicionário</span>
+
+<span class="token keyword">var</span> carType <span class="token operator">=</span> car<span class="token punctuation">.</span><span class="token function">GetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  
+
+<span class="token comment">// dictionary que vai conter os pares chave-valor do JSON que quero mapear a partir do meu objeto car</span>
+
+<span class="token keyword">var</span> integrationObject <span class="token operator">=</span>  <span class="token keyword">new</span>  <span class="token class-name">Dictionary</span><span class="token operator">&lt;</span><span class="token keyword">string</span><span class="token punctuation">,</span> <span class="token keyword">object</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  
+
+<span class="token comment">// percorrendo o dicionário, com cada item sendo do tipo KeyValuePair&lt;string, string&gt;</span>
+
+<span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token keyword">var</span> keyValuePair <span class="token keyword">in</span> mappingsPopulated<span class="token punctuation">)</span>
+
+<span class="token punctuation">{</span>
+
+<span class="token comment">// atribuindo ao dicionário com chave da propriedade mapeada ao JSON de integração, e utilizo Reflection para obter a propriedade e valor de maneira dinâmica</span>
+
+integrationObject<span class="token punctuation">[</span>keyValuePair<span class="token punctuation">.</span>Value<span class="token punctuation">]</span> <span class="token operator">=</span> carType<span class="token punctuation">.</span><span class="token function">GetProperty</span><span class="token punctuation">(</span>keyValuePair<span class="token punctuation">.</span>Key<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">GetValue</span><span class="token punctuation">(</span>car<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+  
+
+<span class="token comment">// convertendo o dictionary para um JSON</span>
+
+<span class="token keyword">var</span> jsonIntegrationObject <span class="token operator">=</span> JsonSerializer<span class="token punctuation">.</span><span class="token function">Serialize</span><span class="token punctuation">(</span>integrationObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  
+
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>jsonIntegrationObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  
+
+Console<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+  
+
+<span class="token keyword">public</span>  <span class="token keyword">class</span>  <span class="token class-name">Car</span>
+
+<span class="token punctuation">{</span>
+
+<span class="token keyword">public</span>  <span class="token function">Car</span><span class="token punctuation">(</span><span class="token keyword">string</span>  model<span class="token punctuation">,</span> <span class="token keyword">int</span>  year<span class="token punctuation">,</span> <span class="token keyword">decimal</span>  price<span class="token punctuation">)</span>
+
+<span class="token punctuation">{</span>
+
+Model <span class="token operator">=</span> model<span class="token punctuation">;</span>
+
+Year <span class="token operator">=</span> year<span class="token punctuation">;</span>
+
+Price <span class="token operator">=</span> price<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+  
+
+<span class="token keyword">public</span>  <span class="token keyword">string</span> Model <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">public</span>  <span class="token keyword">int</span> Year <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">public</span>  <span class="token keyword">decimal</span> Price <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h2 id="hashset--t-"><strong>Hashset &lt; T &gt;</strong></h2>
+<h3 id="o-que-é-3">O que é?</h3>
+<p>É uma classe que permite armazenar conjuntos de elementos únicos, sem ordem específica. Ademais, é uma coleção baseada em hash que é ideal para gerenciar grandes conjuntos de dados.</p>
+<p><strong>Exemplo 1.</strong></p>
+<p>Analogia: Festa dos animais</p>
+<p>Imagine que os animais da floresta estão organizando uma festa, mas há uma regra:</p>
+<p><strong>Cada espécie só pode entrar uma vez</strong></p>
+<p>O HashSet funciona como o organizador dessa festa, para garantir que ninguém se repita.</p>
+<p>Funcionamento:</p>
+<ol>
+<li>Cadastro na Portaria (Add)</li>
+</ol>
+<ul>
+<li>
+<p>Quando um animal chega o organizador verifica instantaneamente se ela já está na lista.</p>
+</li>
+<li>
+<p>Se for nova: Ele diz “Pode entrar” e registra seu nome no livro (retorna true).</p>
+</li>
+<li>
+<p>Se já estiver: Ele diz “Não pode entrar” (retorna false).</p>
+</li>
+</ul>
+<ol start="2">
+<li>Verificação Rápida (Contains)</li>
+</ol>
+<ul>
+<li>Se alguém perguntar “Tem Cobra aqui?”, o organizador (Hashset) não precisa percorrer o livro todo. Ele usa uma funcionalidade de localização (hash) para encontrar a resposta.</li>
+</ul>
+<ol start="3">
+<li>Saída Discreta (Remove)</li>
+</ol>
+<ul>
+<li>Se a Cobra resolver ir embora, o organizador simplesmente apaga seu nome do livro e ninguém mais verá ela.</li>
+</ul>
+<p>Hash Codes:</p>
+<p>Cada animal ganha um “número secreto” calculado pelo organizador. Esse número direciona ele para um lugar específico no livro, acelerando todas as operações.</p>
+<p>Os animais não entram em ordem alfabética ou de chegada. De forma que, o livro organiza os nomes de maneira eficiente (não mantém ordem de inserção).</p>
+<h4 id="características">Características</h4>
+<ul>
+<li>
+<p>Evita elementos duplicados</p>
+</li>
+<li>
+<p>Fornece operações rápidas de inserção, exclusão, recuperação e pesquisa</p>
+</li>
+<li>
+<p>Suporta operações de conjunto, como União, Intersecção e Diferença</p>
+</li>
+<li>
+<p>Não é classificado e não contém elementos duplicados</p>
+</li>
+<li>
+<p>Não suporta índices, apenas enumeradores</p>
+</li>
+<li>
+<p>Permite armazenar um único valor nulo</p>
+</li>
+</ul>
+<h4 id="usos">Usos</h4>
+<ul>
+<li>
+<p>É uma boa escolha quando você quer uma coleção que contenha elementos únicos e os elementos na coleção podem ser buscados rapidamente</p>
+</li>
+<li>
+<p>É a coleção para usar em situações em que você precisa manter um conjunto distinto de dados</p>
+</li>
+</ul>
+<h4 id="vantagens-2">Vantagens</h4>
+<ul>
+<li>
+<p>Não permite duplicatas: O HashSet elimina automaticamente duplicatas, facilitando a manutenção de dados.</p>
+</li>
+<li>
+<p>Desempenho rápido: O HashSet é eficiente para grandes arrays, com tempos de pesquisa rápidos.</p>
+</li>
+<li>
+<p>Verificações de associação rápidas: O HashSet oferece verificações de associação muito rápidas.</p>
+</li>
+<li>
+<p>Inserção e remoção eficientes: O HashSet é eficiente para inserir e remover elementos.</p>
+</li>
+</ul>
+<h4 id="desvantagens-2">Desvantagens</h4>
+<ul>
+<li>
+<p>Não garante ordem: O HashSet não garante a ordem dos elementos.</p>
+</li>
+<li>
+<p>Não suporta indexação: Não é possível acessar elementos por índice.</p>
+</li>
+</ul>
+<p><strong>Exemplo 2.</strong></p>
+<pre class=" language-csharp"><code class="prism  language-csharp">
+<span class="token keyword">public</span>  <span class="token keyword">class</span>  <span class="token class-name">Pessoa</span>
+
+<span class="token punctuation">{</span>
+
+<span class="token keyword">public</span>  <span class="token keyword">string</span> nome <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">public</span>  <span class="token keyword">int</span> idade <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">public</span>  <span class="token keyword">int</span> matricula <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h2 id="queue--t-"><strong>Queue &lt; T &gt;</strong></h2>
+<h3 id="o-que-é-4">O que é?</h3>
+<p>É uma coleção que funciona como uma fila, ou seja, uma estrutura de dados que organiza elementos em ordem.</p>
+<p><strong>Exemplo 1.</strong></p>
+<p>Analogia: A Padaria de Mai-Ly</p>
+<p>Na padaria, os clientes chegam em ordem e são atendidos um por vez (primeiro a chegar, primeiro a ser servido). A fila funciona como um sistema de senhas.</p>
+<p>Enqueue (Chegar na fila):</p>
+<ul>
+<li>
+<p>Cada cliente pega uma senha numérica ao entrar.</p>
+</li>
+<li>
+<p>João chega primeiro (senha 1), depois Ana (senha 2), e assim por diante.</p>
+</li>
+</ul>
+<p>Dequeue (Atender o próximo):</p>
+<ul>
+<li>Sempre chama o cliente com a menor senha (o primeiro da fila). João é atendido primeiro, depois Ana, e assim por diante.</li>
+</ul>
+<p>Peek (Espiar quem é o próximo):</p>
+<ul>
+<li>Dona Mai-ly pode olhar quem é o próximo da fila sem chamá-lo ainda (só para verificar).</li>
+</ul>
+<h4 id="vantagens-3">Vantagens</h4>
+<ul>
+<li>
+<p>Organização: Ideal para cenários onde a ordem de processamento é importante, como filas de tarefas</p>
+</li>
+<li>
+<p>Eficiência: Operações de enfileiramento e desenfileiramento são rápidas e eficientes</p>
+</li>
+<li>
+<p>Simplicidade: Métodos como Enqueue() e Dequeue() tornam o uso intuitivo</p>
+</li>
+</ul>
+<h4 id="desvantagens-3">Desvantagens</h4>
+<ul>
+<li>
+<p>Pode ser modificada por outros threads, o que pode gerar exceções</p>
+</li>
+<li>
+<p>Enumerar por meio de uma coleção não é considerado um procedimento thread-safe</p>
+</li>
+</ul>
+<pre class=" language-csharp"><code class="prism  language-csharp">
+<span class="token keyword">public</span>  <span class="token keyword">class</span>  <span class="token class-name">Pessoa</span>
+
+<span class="token punctuation">{</span>
+
+<span class="token keyword">public</span>  <span class="token keyword">string</span> nome <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">public</span>  <span class="token keyword">int</span> idade <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">public</span>  <span class="token keyword">int</span> matricula <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h2 id="stack--t-"><strong>Stack &lt; T &gt;</strong></h2>
+<h3 id="o-que-é-5">O que é?</h3>
+<p>É uma classe genérica que implementa uma pilha, ou seja, uma estrutura de dados que insere e remove elementos na mesma extremidade.</p>
+<h3 id="funcionamento-1">Funcionamento</h3>
+<ul>
+<li>
+<p>Para inserir um elemento, usa-se o método Push</p>
+</li>
+<li>
+<p>Para remover um elemento, usa-se o método Pop</p>
+</li>
+<li>
+<p>Para retornar um elemento sem removê-lo, usa-se o método Peek</p>
+</li>
+</ul>
+<p><strong>Exemplo 1.</strong></p>
+<p>Analogia: Pilha de Pizzas</p>
+<p>Imagine um pizzaiolo chamado Giuseppe Calvo que prepara pizzas e as empilha em uma torre. Logo, como diz Arnaldo Cesár Ribeiro, a regra é clara:</p>
+<p>Sempre que alguém pegar uma pizza, deve pegar a do TOPO da pilha (última a ser colocada). Assim, funciona o princípio LIFO (Last In, First Out).</p>
+<h3 id="uso">Uso</h3>
+<ul>
+<li>
+<p>Para preservar estados variáveis durante chamadas para outros procedimentos</p>
+</li>
+<li>
+<p>Para acessar informações em ordem inversa</p>
+</li>
+</ul>
+<h4 id="vantagens-4">Vantagens</h4>
+<ul>
+<li>
+<p>São simples e fáceis de entender</p>
+</li>
+<li>
+<p>São eficientes, permitindo acesso rápido aos dados</p>
+</li>
+<li>
+<p>São eficientes em termos de memória</p>
+</li>
+<li>
+<p>São úteis em muitos cenários, como chamadas de função e avaliação de expressão</p>
+</li>
+</ul>
+<h4 id="desvantagens-4">Desvantagens</h4>
+<ul>
+<li>
+<p>Quando usadas para armazenar e recuperar objetos em ordem FIFO, têm características de desempenho abaixo do ideal</p>
+</li>
+<li>
+<p>Quando usadas para armazenar e recuperar objetos aleatoriamente, são muito ineficientes</p>
+</li>
+<li>
+<p>O custo computacional varia muito dependendo do padrão de operações</p>
+</li>
+</ul>
+<h2 id="utilizações">Utilizações</h2>
+<p>| Eu quero… | Opções de coleção genérica | Opções de coleção não genérica | Opções de coleção thread-safe ou imutável |</p>
+<p>| — | — | — | — |</p>
+<p>| <strong>Armazenar itens como pares chave/valor para consulta rápida por chave</strong> | <code>Dictionary&lt;TKey,TValue&gt;</code> | <code>Hashtable</code>  <em>(Um conjunto de pares chave/valor que são organizados com base no código hash da chave.)</em> | <code>ConcurrentDictionary&lt;TKey,TValue&gt;</code>  <code>ReadOnlyDictionary&lt;TKey,TValue&gt;</code>  <code>ImmutableDictionary&lt;TKey,TValue&gt;</code> |</p>
+<p>| <strong>Itens de acesso por índice</strong> | <code>List&lt;T&gt;</code> | <code>Array</code>  <code>ArrayList</code> | <code>ImmutableList&lt;T&gt;</code>  <code>ImmutableArray</code> |</p>
+<p>| <strong>Usar itens primeiro a entrar, primeiro a sair (FILA)</strong> | <code>Queue&lt;T&gt;</code> | <code>Queue</code> | <code>ConcurrentQueue&lt;T&gt;</code>  <code>ImmutableQueue&lt;T&gt;</code> |</p>
+<p>| <strong>Usar dados último a entrar, primeiro a sair (PILHA)</strong> | <code>Stack&lt;T&gt;</code> | <code>Stack</code> | <code>ConcurrentStack&lt;T&gt;</code>  <code>ImmutableStack&lt;T&gt;</code> |</p>
+<p>| <strong>Acessar itens em sequência</strong> | <code>LinkedList&lt;T&gt;</code> | Nenhuma recomendação | Nenhuma recomendação |</p>
+<p>| <strong>Receber notificações quando itens forem adicionados/removidos</strong> | <code>ObservableCollection&lt;T&gt;</code> | Nenhuma recomendação | Nenhuma recomendação |</p>
+<p>| <strong>Uma coleção classificada</strong> | <code>SortedList&lt;TKey,TValue&gt;</code> | <code>SortedList</code> | <code>ImmutableSortedDictionary&lt;TKey,TValue&gt;</code>  <code>ImmutableSortedSet&lt;T&gt;</code> |</p>
+<p>| <strong>Um conjunto de funções matemáticas</strong> | <code>HashSet&lt;T&gt;</code>  <code>SortedSet&lt;T&gt;</code> | Nenhuma recomendação | <code>ImmutableHashSet&lt;T&gt;</code>  <code>ImmutableSortedSet&lt;T&gt;</code> |</p>
+<h2 id="complexidade">Complexidade</h2>
+<p>| Mutável | Amortizado | Pior caso | Imutável | Complexidade |</p>
+<p>| — | — | — | — | — |</p>
+<p>| <code>Stack&lt;T&gt;.Push</code> | O(1) | O(n) | <code>ImmutableStack&lt;T&gt;.Push</code> | O(1) |</p>
+<p>| <code>Queue&lt;T&gt;.Enqueue</code> | O(1) | O(n) | <code>ImmutableQueue&lt;T&gt;.Enqueue</code> | O(1) |</p>
+<p>| <code>List&lt;T&gt;.Add</code> | O(1) | O(n) | <code>ImmutableList&lt;T&gt;.Add</code> | O(log n) |</p>
+<p>| <code>List&lt;T&gt;.Item[Int32]</code> | O(1) | O(1) | <code>ImmutableList&lt;T&gt;.Item[Int32]</code> | O(log n) |</p>
+<p>| <code>List&lt;T&gt;.Enumerator</code> | O(n) | O(n) | <code>ImmutableList&lt;T&gt;.Enumerator</code> | O(n) |</p>
+<p>| <code>HashSet&lt;T&gt;.Add</code> (Pesquisa) | O(1) | O(n) | <code>ImmutableHashSet&lt;T&gt;.Add</code> | O(log n) |</p>
+<p>| <code>SortedSet&lt;T&gt;.Add</code> | O(log n) | O(n) | <code>ImmutableSortedSet&lt;T&gt;.Add</code> | O(log n) |</p>
+<p>| <code>Dictionary&lt;T&gt;.Add</code> | O(1) | O(n) | <code>ImmutableDictionary&lt;T&gt;.Add</code> | O(log n) |</p>
+<p>| <code>Dictionary&lt;T&gt;</code> (Pesquisa) | O(1) | O(1) (ou estritamente O(n)) | <code>ImmutableDictionary&lt;T&gt;</code> (Pesquisa) | O(log n) |</p>
+<p>| <code>SortedDictionary&lt;T&gt;.Add</code> | O(log n) | O(n log n) | <code>ImmutableSortedDictionary&lt;T&gt;.Add</code> | O(log n) |</p>
+<h3 id="demonstração-prática"><strong>Demonstração Prática</strong></h3>
+<p>Codar na sala, resolvendo alguns problemas simples com diferentes estruturas. (qm vai ser o goat q vai ficar aqui)?</p>
+<p>Desenhar ensinando no quadro, lista encadeada, arvore e etc</p>
+<h4 id="referencia">Referencia</h4>
+<p><a href="https://learn.microsoft.com/pt-br/dotnet/standard/collections/">https://learn.microsoft.com/pt-br/dotnet/standard/collections/</a></p>
+<p><a href="https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.dictionary-2?view=net-9.0">https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.dictionary-2?view=net-9.0</a></p>
+<p><a href="https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.list-1?view=net-9.0">https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.list-1?view=net-9.0</a></p>
+<p><a href="https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.queue-1?view=net-9.0">https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.queue-1?view=net-9.0</a></p>
+<p><a href="https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.stack-1?view=net-9.0">https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.stack-1?view=net-9.0</a></p>
+<p><a href="https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.linkedlist-1?view=net-9.0">https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.linkedlist-1?view=net-9.0</a></p>
+<p><a href="https://learn.microsoft.com/pt-br/dotnet/api/system.collections.objectmodel.observablecollection-1?view=net-9.0">https://learn.microsoft.com/pt-br/dotnet/api/system.collections.objectmodel.observablecollection-1?view=net-9.0</a></p>
+<p><a href="https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.sortedlist-2?view=net-9.0">https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.sortedlist-2?view=net-9.0</a></p>
+<p><a href="https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.hashset-1?view=net-9.0">https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.hashset-1?view=net-9.0</a></p>
+<p><a href="https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.sortedset-1?view=net-9.0">https://learn.microsoft.com/pt-br/dotnet/api/system.collections.generic.sortedset-1?view=net-9.0</a></p>
+
+    </div>
+  </div>
+</body>
+
+</html>
